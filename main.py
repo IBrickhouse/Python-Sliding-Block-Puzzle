@@ -22,7 +22,7 @@ brown = (100,40,0)
 background = pygame.image.load('white.jpg')
 background = pygame.transform.scale(background, (800,600))
 
-font = pygame.font.Font(os.path.join(os.getcwd(), 'comic.ttf'), 70)
+font = pygame.font.Font(os.path.join(os.getcwd(), 'Comic Book.ttf'), 70)
 
 class Generate_Puzzle:
     def __init__(self, gridsize, tilesize, margin):
