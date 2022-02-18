@@ -94,5 +94,21 @@ class Generate_Puzzle:
                 for i in range:
                     self.setTileRandomly()
 
-#Test commit
+    def makeText(text, color, bgcolor, top, left):
+        textSurf = font.render(text, True, color, bgcolor)
+        textRect = textSurf.get_rect()
+        textRect.topleft = (top, left)
+        return (textSurf, textRect)
+
+
+    # Generic method to draw fonts on the screen
+    font_name = pygame.font.match_font('Comic Book.ttf')
+    def draw_text(display, text, size, x, y):
+        font = pygame.font.Font(font_name, size)
+        text_surface = font.render(text, True, brown)
+        text_rec = text_surface.get_rect()
+        text_rect.midtop = (x, y)
+        gameDisplay.blit(text_surface, text_rect)
+
+    
 
