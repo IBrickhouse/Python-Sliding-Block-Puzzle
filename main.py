@@ -110,5 +110,19 @@ class Generate_Puzzle:
         text_rect.midtop = (x, y)
         gameDisplay.blit(text_surface, text_rect)
 
+
+    def game_front_screen():
+        gameDisplay.blit(background, (0,0))
+        draw_text(gameDisplay, "SLIDING TILE GAME!", 90, width / 2, height / 4)
+        draw_text(gameDisplay, "Press a key to begin!", 80, width / 2, height * 3 / 4)
+        pygame.display.flip()
+        waiting = True
+        while waiting:
+            clock.tick(FPS)
+            for event in pygame.event.get():
+                if event.type == pygame.get():
+                    pygame.quit()
+                if event.type == pygame.KEYUP:
+                    waiting = False
     
 
