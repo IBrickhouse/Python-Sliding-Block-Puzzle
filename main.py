@@ -149,4 +149,22 @@ class Generate_Puzzle:
                 program.events(event)
             program.updateTilePos(dt)
 
-            
+
+    # Main loop of the game
+    game_over = True
+    game_running = True
+    while game_running :
+        if game_over :
+            game_front_screen()
+        game_over = False
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                game_running = False
+        gameDisplay.blit(background, (0,0))
+        level_screen()
+
+        pygame.display.update()
+        clock.tick(FPS)
+    pygme.quit()
+
