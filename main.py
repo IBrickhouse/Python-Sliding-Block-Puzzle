@@ -290,7 +290,7 @@ def makeText(text, color, bgcolor, top, left):
 
 
 # Generic method to draw fonts on the screen   
-font_name = pygame.font.match_font('comic.ttf')
+font_name = pygame.font.match_font('Comic Book.ttf')
 def draw_text(display, text, size, x, y):
     font = pygame.font.Font(font_name, size)
     text_surface = font.render(text, True, brown)
