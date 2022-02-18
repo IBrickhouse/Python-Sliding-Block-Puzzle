@@ -126,3 +126,27 @@ class Generate_Puzzle:
                     waiting = False
     
 
+    def level_screen():
+        L1, L1_RECT = makeText('Level1', RED,True,100,40)
+
+        gameDisplay.blit(L1, L1_RECT)
+
+        mpos = pygame.mouse.get_pos()
+        for event in pygame.event.get():
+            if L1_RECT.colliddepoint(mpos):
+                level1()
+
+    def level1():
+        program=Generate_Puzzle((3,3),80,5)
+        while True:
+            dt = clock.tick()/1000
+            gameDisplay.blit(background, (0,0))
+            draw_text(gameDisplay)
+            pygame.draw_tile(gameDisplay)
+            pygame.display.flip()
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT: pygame.quit();sys.exit()
+                program.events(event)
+            program.updateTilePos(dt)
+
+            
