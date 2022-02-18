@@ -122,14 +122,14 @@ class Generate_Puzzle:
 
 
 def level_screen():
-    L1, L1_RECT   = makeText('Level1', RED,True,100 , 40)
-    L2, L2_RECT   = makeText('Level2', RED, True,500 , 40)
-    L3, L3_RECT   = makeText('Level3', RED, True,100 , 180)
-    L4, L4_RECT   = makeText('Level4',  RED,True,500 , 180)
-    L5, L5_RECT   = makeText('Level5',RED, True, 100 , 320)
-    L6, L6_RECT   = makeText('Level6', RED,True,500 ,  320)
-    L7, L7_RECT   = makeText('Level7', RED,True,100 , 460)
-    L8, L8_RECT   = makeText('Level8', RED,True,500 , 460)
+    L1, L1_RECT = makeText('Level1', RED, True, 100, 40)
+    L2, L2_RECT = makeText('Level2', RED, True, 500, 40)
+    L3, L3_RECT = makeText('Level3', RED, True, 100, 180)
+    L4, L4_RECT = makeText('Level4', RED, True, 500, 180)
+    L5, L5_RECT = makeText('Level5', RED, True, 100, 320)
+    L6, L6_RECT = makeText('Level6', RED, True, 500, 320)
+    L7, L7_RECT = makeText('Level7', RED, True, 100, 460)
+    L8, L8_RECT = makeText('Level8', RED, True, 500, 460)
 
     #### display levels on the screen
 
@@ -155,14 +155,19 @@ def level_screen():
 
         elif L4_RECT.collidepoint(mpos):
             level4()
+
         elif L5_RECT.collidepoint(mpos):
             level5()
+
         elif L5_RECT.collidepoint(mpos):
             level6()
+
         elif L6_RECT.collidepoint(mpos):
             level6()
+
         elif L7_RECT.collidepoint(mpos):
             level7()
+
         elif L8_RECT.collidepoint(mpos):
             level8()
 
