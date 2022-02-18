@@ -1,6 +1,8 @@
 #importing modules
 import pygame
-import sys, os , random
+import sys
+import os 
+import random
 
 
 #initializing window
@@ -8,7 +10,7 @@ WIDTH = 800
 HEIGHT = 600
 FPS = 12                                                 #controls how often the gameDisplay should refresh. In our case, it will refresh every 1/12th second
 pygame.init()
-pygame.display.set_caption('sliding tiles- TechVivdan')
+pygame.display.set_caption('sliding tiles')
 gameDisplay = pygame.display.set_mode((WIDTH, HEIGHT))   #setting game window size
 clock = pygame.time.Clock()
 
@@ -26,7 +28,7 @@ background = pygame.transform.scale(background, (800, 600))
 font = pygame.font.Font(os.path.join(os.getcwd(), 'Comic Book.ttf'), 70)
 
 
-##############class for whole game
+#*Class for whole game*
 class Generate_Puzzle:                     
     def __init__(self, gridsize, tilesize, margin):  
         
