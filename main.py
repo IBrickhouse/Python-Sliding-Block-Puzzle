@@ -5,7 +5,7 @@ import os
 import random
 
 # loading background image for processing
-background = pygame.image.load('images/momo.jpg') 
+background = pygame.image.load('images/latwiceiiigroup.jpg') 
 
 # getting image resolution dimensions
 dimensions = background.get_rect().size
