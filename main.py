@@ -4,10 +4,15 @@ import sys
 import os 
 import random
 
+# loading background image for processing
+background = pygame.image.load('images/momo.jpg') 
+dimensions = background.get_rect().size
+
+#print(dimensions[0])
 
 #initializing window
-WIDTH = 800
-HEIGHT = 600
+WIDTH = dimensions[0]
+HEIGHT = dimensions[1]
 FPS = 12                                                 #controls how often the gameDisplay should refresh. In our case, it will refresh every 1/12th second
 pygame.init()
 pygame.display.set_caption('sliding tiles')
@@ -20,11 +25,10 @@ BLACK = (0,0,0)
 RED = (255,0,0)
 brown = (100,40,0)
 
+#setting game background image and size
+background = pygame.transform.scale(background, (dimensions[0], dimensions[1]))
 
-
-background = pygame.image.load('images/momo.jpg')           #setting game background image
-background = pygame.transform.scale(background, (800, 600))
-
+#set game text font
 font = pygame.font.Font(os.path.join(os.getcwd(), 'Comic Book.ttf'), 70)
 
 
@@ -341,6 +345,7 @@ pygame.quit()
 
 
 # background image size getter (may more to seperate file in future)
+# does not use external package. currently not used.
 def get_image_size(fname):
     '''Determine the image type of fhandle and return its size.
     from draco'''
