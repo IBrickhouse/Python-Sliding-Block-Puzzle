@@ -313,15 +313,17 @@ def draw_text(display, text, size, x, y):
 
 def game_front_screen():
     gameDisplay.blit(background, (0,0))
-    draw_text(gameDisplay, "SLIDING TILE GAME!", 90, WIDTH / 2, HEIGHT / 4)
-    draw_text(gameDisplay, "Press a key to begin!", 80, WIDTH / 2, HEIGHT * 3 / 4)
+    draw_text(gameDisplay, "SLIDING TILE GAME!", 90, WIDTH / 2, HEIGHT / 5)
+    draw_text(gameDisplay, "Press a key to begin!", 80, WIDTH / 2, HEIGHT / 4)
     pygame.display.flip()
     waiting = True
     while waiting:
         clock.tick(FPS)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                #pygame.display.quit()
                 pygame.quit()
+                exit()
             if event.type == pygame.KEYUP:
                 waiting = False
                 
