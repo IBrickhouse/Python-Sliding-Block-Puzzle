@@ -25,7 +25,7 @@ clock = pygame.time.Clock()
 WHITE = (255,255,255)
 BLACK = (0,0,0)
 RED = (255,0,0)
-brown = (100,40,0)
+BROWN = (100,40,0)
 
 #setting game background image and size
 background = pygame.transform.scale(background, (dimensions[0], dimensions[1]))
@@ -52,7 +52,7 @@ class Generate_Puzzle:
 
         for i in range(self.tiles_no):
             image = pygame.Surface((tilesize,tilesize))    #display tiles 
-            image.fill(brown)
+            image.fill(BROWN)
             text = font.render(str(i+1),2,(255,255,255))  ##text on tiles
             width,height = text.get_size()  #text size
             image.blit(text,((tilesize-width)/2 , (tilesize-height)/2))   #####display text in the middle of tile
@@ -304,7 +304,7 @@ def makeText(text, color, bgcolor, top, left):
 font_name = pygame.font.match_font('Comic Book.ttf')
 def draw_text(display, text, size, x, y):
     font = pygame.font.Font(font_name, size)
-    text_surface = font.render(text, True, brown)
+    text_surface = font.render(text, True, BROWN)
     text_rect = text_surface.get_rect()
     text_rect.midtop = (x, y)
     gameDisplay.blit(text_surface, text_rect)
