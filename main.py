@@ -182,7 +182,7 @@ def level1():
     while True:
         dt = clock.tick()/1000
         gameDisplay.blit(background, (0,0))
-        draw_text(gameDisplay,'PRESS SPACE TO START GAME', 60,370 , 500)
+        draw_text(gameDisplay,'PRESS SPACE TO SHUFFLE TILES', 60, WIDTH / 2 , HEIGHT / 3)
         program.draw_tile(gameDisplay)
         pygame.display.flip()
         
