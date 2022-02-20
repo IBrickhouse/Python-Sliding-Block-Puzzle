@@ -22,7 +22,7 @@ brown = (100,40,0)
 
 
 
-background = pygame.image.load('white.jpg')           #setting game background image
+background = pygame.image.load('images/red.jpg')           #setting game background image
 background = pygame.transform.scale(background, (800, 600))
 
 font = pygame.font.Font(os.path.join(os.getcwd(), 'Comic Book.ttf'), 70)
