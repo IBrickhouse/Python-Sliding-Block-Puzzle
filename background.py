@@ -11,7 +11,7 @@ image_url = image.url
 
 # grabs the image and shows it
 im = Image.open(requests.get(image_url, stream=True).raw)
-im.show()
+#im.show()
 
 #saves image to project directory
-im.save(images/"twicebg.jpg")
+im.save("images/twicebg.jpg")
