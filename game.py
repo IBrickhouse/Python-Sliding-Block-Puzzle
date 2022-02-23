@@ -4,6 +4,9 @@ import sys
 import os 
 import random
 
+#import files from root directory
+import background
+
 # loading background image for processing
 background = pygame.image.load('images/twicebg.jpg') 
 
