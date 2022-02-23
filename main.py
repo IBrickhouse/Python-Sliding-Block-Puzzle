@@ -4,10 +4,17 @@ import sys
 import os 
 import random
 
+# loading background image for processing
+background = pygame.image.load('images/latwiceiiigroup.jpg') 
+
+# getting image resolution dimensions
+dimensions = background.get_rect().size
+
+#print(dimensions[0])
 
 #initializing window
-WIDTH = 800
-HEIGHT = 600
+WIDTH = dimensions[0]
+HEIGHT = dimensions[1]
 FPS = 12                                                 #controls how often the gameDisplay should refresh. In our case, it will refresh every 1/12th second
 pygame.init()
 pygame.display.set_caption('sliding tiles')
@@ -18,13 +25,12 @@ clock = pygame.time.Clock()
 WHITE = (255,255,255)
 BLACK = (0,0,0)
 RED = (255,0,0)
-brown = (100,40,0)
+BROWN = (100,40,0)
 
+#setting game background image and size
+background = pygame.transform.scale(background, (dimensions[0], dimensions[1]))
 
-
-background = pygame.image.load('images/red.jpg')           #setting game background image
-background = pygame.transform.scale(background, (800, 600))
-
+#set game text font
 font = pygame.font.Font(os.path.join(os.getcwd(), 'Comic Book.ttf'), 70)
 
 
@@ -46,7 +52,7 @@ class Generate_Puzzle:
 
         for i in range(self.tiles_no):
             image = pygame.Surface((tilesize,tilesize))    #display tiles 
-            image.fill(brown)
+            image.fill(BROWN)
             text = font.render(str(i+1),2,(255,255,255))  ##text on tiles
             width,height = text.get_size()  #text size
             image.blit(text,((tilesize-width)/2 , (tilesize-height)/2))   #####display text in the middle of tile
@@ -176,7 +182,7 @@ def level1():
     while True:
         dt = clock.tick()/1000
         gameDisplay.blit(background, (0,0))
-        draw_text(gameDisplay,'PRESS SPACE TO START GAME', 60,370 , 500)
+        draw_text(gameDisplay,'PRESS SPACE TO SHUFFLE TILES', 60, WIDTH / 2 , HEIGHT / 3)
         program.draw_tile(gameDisplay)
         pygame.display.flip()
         
@@ -298,7 +304,7 @@ def makeText(text, color, bgcolor, top, left):
 font_name = pygame.font.match_font('Comic Book.ttf')
 def draw_text(display, text, size, x, y):
     font = pygame.font.Font(font_name, size)
-    text_surface = font.render(text, True, brown)
+    text_surface = font.render(text, True, BROWN)
     text_rect = text_surface.get_rect()
     text_rect.midtop = (x, y)
     gameDisplay.blit(text_surface, text_rect)
@@ -308,14 +314,16 @@ def draw_text(display, text, size, x, y):
 def game_front_screen():
     gameDisplay.blit(background, (0,0))
     draw_text(gameDisplay, "SLIDING TILE GAME!", 90, WIDTH / 2, HEIGHT / 4)
-    draw_text(gameDisplay, "Press a key to begin!", 80, WIDTH / 2, HEIGHT * 3 / 4)
+    draw_text(gameDisplay, "Press a key to begin!", 80, WIDTH / 2, HEIGHT / 3)
     pygame.display.flip()
     waiting = True
     while waiting:
         clock.tick(FPS)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                #pygame.display.quit()
                 pygame.quit()
+                exit()
             if event.type == pygame.KEYUP:
                 waiting = False
                 
@@ -340,4 +348,40 @@ while game_running :
 pygame.quit()
 
 
+# background image size getter (may more to seperate file in future)
+# does not use external package. currently not used.
+def get_image_size(fname):
+    '''Determine the image type of fhandle and return its size.
+    from draco'''
+    with open(fname, 'rb') as fhandle:
+        head = fhandle.read(24)
+        if len(head) != 24:
+            return
+        if imghdr.what(fname) == 'png':
+            check = struct.unpack('>i', head[4:8])[0]
+            if check != 0x0d0a1a0a:
+                return
+            width, height = struct.unpack('>ii', head[16:24])
+        elif imghdr.what(fname) == 'gif':
+            width, height = struct.unpack('<HH', head[6:10])
+        elif imghdr.what(fname) == 'jpeg':
+            try:
+                fhandle.seek(0) # Read 0xff next
+                size = 2
+                ftype = 0
+                while not 0xc0 <= ftype <= 0xcf:
+                    fhandle.seek(size, 1)
+                    byte = fhandle.read(1)
+                    while ord(byte) == 0xff:
+                        byte = fhandle.read(1)
+                    ftype = ord(byte)
+                    size = struct.unpack('>H', fhandle.read(2))[0] - 2
+                # We are at a SOFn block
+                fhandle.seek(1, 1)  # Skip `precision' byte.
+                height, width = struct.unpack('>HH', fhandle.read(4))
+            except Exception: #IGNORE:W0703
+                return
+        else:
+            return
+        return width, height
     
